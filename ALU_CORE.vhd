@@ -3,7 +3,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.STD_LOGIC_UNSIGNED.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
-entity Delay_ALU is
+entity ALU_CORE is
     port(
         Clk        : in  std_logic;               -- input Clock signal
         A, B       : in  unsigned(7 downto 0);    -- 8-bit inputs from latches A and B
@@ -12,9 +12,9 @@ entity Delay_ALU is
         R1         : out unsigned(3 downto 0);    -- lower 4-bits of 8-bit Result Output
         R2         : out unsigned(3 downto 0)     -- higher 4-bits of 8-bit Result Output
     );
-end Delay_ALU;
+end ALU_CORE;
 
-architecture calculation of Delay_ALU is
+architecture calculation of ALU_CORE is
     -- temporary signal declarations
     signal Reg1, Reg2, Result : unsigned(7 downto 0);
     signal Reg4               : unsigned(0 to 7);
@@ -61,5 +61,6 @@ architecture calculation of Delay_ALU is
 
     R1 <= Result(3 downto 0); -- Since the output seven segments can
     R2 <= Result(7 downto 4); -- only 4-bits, split the 8-bit to two 4-bits.
+
 
 end calculation;
