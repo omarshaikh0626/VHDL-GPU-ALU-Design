@@ -1,0 +1,23 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY latch1 IS
+    PORT (
+        A       : IN  STD_LOGIC_VECTOR(7 DOWNTO 0);
+        Reset  : IN  STD_LOGIC;    -- active LOW reset
+        Clock   : IN  STD_LOGIC;
+        Q       : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
+    );
+END latch1;
+
+ARCHITECTURE Behavior OF latch1 IS
+	BEGIN
+    PROCESS (Reset, Clock)
+		 BEGIN
+			  IF Reset = '1' THEN               					-- FIXED reset polarity
+					Q <= "00000000" ;
+			  ELSIF Clock'EVENT AND Clock = '1' THEN      -- clock detection
+					Q <= A;
+			  END IF;
+	 END PROCESS;
+END Behavior;
