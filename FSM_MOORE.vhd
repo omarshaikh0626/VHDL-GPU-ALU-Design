@@ -1,6 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
-entity FSM_MEALY is 
+entity FSM_MOORE is 
 	port
 	(
 		Clock	: in	std_logic; --clock
@@ -10,7 +10,7 @@ entity FSM_MEALY is
 		current_state	: out	std_logic_vector(3 downto 0) --current state
 		); 
 	end entity;	
-	architecture fsm of FSM_MEALY is 
+	architecture fsm of FSM_MOORE is 
 		type state_type is (s0, s1, s2, s3, s4, s5, s6, s7, s8);
 		
 		--register to hold the current state
@@ -72,7 +72,7 @@ entity FSM_MEALY is
 				end if;
 			end process;
 			
-			-- mealy logic 
+			-- moore logic 
 			process (yfsm, data_in) -- data_in is read only
     begin
         case yfsm is
@@ -106,3 +106,4 @@ entity FSM_MEALY is
         end case;
     end process;
 end architecture;
+
